@@ -130,4 +130,55 @@ CMD apachectl -DFOREGROUND
 
 ## ENV / WORKDIR / EXPOSE
 
+Agregar variables de entorno
 
+```
+FROM centos
+RUN yum install httpd -y
+
+COPY Theme-DarkAdmin /var/www/html
+
+ENV contenido prueba
+
+RUN echo "$contenido" > /var/www/html/prueba.html
+
+CMD apachectl -DFOREGROUND
+```
+
+Definir un directorio de trabajo
+
+```
+FROM centos
+RUN yum install httpd -y
+
+WORKDIR /var/www/html
+
+COPY Theme-DarkAdmin .
+
+ENV contenido prueba
+
+RUN echo "$contenido" > prueba.html
+
+CMD apachectl -DFOREGROUND
+```
+
+Exponer puertos
+
+```
+FROM centos
+RUN yum install httpd -y
+
+WORKDIR /var/www/html
+
+COPY Theme-DarkAdmin .
+
+ENV contenido prueba
+
+RUN echo "$contenido" > prueba.html
+
+EXPOSE 8080 
+
+CMD apachectl -DFOREGROUND
+```
+
+## LABEL / USER / VOLUME
